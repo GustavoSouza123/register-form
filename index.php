@@ -62,50 +62,33 @@
                 </div>
             </div>
             <div class="languages">
-                <div class="title">Linguagens de programação</div>
+                <div class="title">Conhecimento técnico</div>
                 <div class="content">
                     <div class="developer">
                         <div class="option">
-                            <input type="radio" name="developer" value="frontend" /> <label for="developer">Front-end</label>
+                            <input type="radio" name="developer" id="frontend" value="frontend" /> <label for="frontend">Front-end</label>
                         </div>
                         <div class="option">
-                            <input type="radio" name="developer" value="backend" /> <label for="developer">Back-end</label>
+                            <input type="radio" name="developer" id="backend" value="backend" /> <label for="backend">Back-end</label>
                         </div>
                         <div class="option">
-                            <input type="radio" name="developer" value="fullstack" /> <label for="developer">Full-stack</label>
+                            <input type="radio" name="developer" id="fullstack" value="fullstack" /> <label for="fullstack">Full-stack</label>
                         </div>
                         <div class="option">
-                            <input type="radio" name="developer" value="other" /> <label for="developer">Outro</label>
+                            <input type="radio" name="developer" id="other" value="other" /> <label for="other">Outro</label>
                         </div>
                     </div>
                     <div class="programming-languages">
-                        <div class="option">
-                            <input type="checkbox" name="language" value="hmtl" /> <label for="language">HTML</label>
-                        </div>
-                        <div class="option">
-                            <input type="checkbox" name="language" value="css" /> <label for="language">CSS</label>
-                        </div>
-                        <div class="option">
-                            <input type="checkbox" name="language" value="javascript" /> <label for="language">JavaScript</label>
-                        </div>
-                        <div class="option">
-                            <input type="checkbox" name="language" value="php" /> <label for="language">PHP</label>
-                        </div>
-                        <div class="option">
-                            <input type="checkbox" name="language" value="java" /> <label for="language">Java</label>
-                        </div>
-                        <div class="option">
-                            <input type="checkbox" name="language" value="python" /> <label for="language">Python</label>
-                        </div>
-                        <div class="option">
-                            <input type="checkbox" name="language" value="c" /> <label for="language">C</label>
-                        </div>
-                        <div class="option">
-                            <input type="checkbox" name="language" value="cpp" /> <label for="language">C++</label>
-                        </div>
-                        <div class="option">
-                            <input type="checkbox" name="language" value="csharp" /> <label for="language">C#</label>
-                        </div>
+                        <?php
+                            $langs = array('HTML', 'CSS', 'JavaScript', 'React', 'Vue', 'Angular', 'Node.js', 'Typescript', 'PHP', 'Laravel', 'Java', 'Spring', 'Python', 'Django', 'SQL', 'MySQL', 'MongoDB', 'C', 'C++', 'C#', 'Go', 'Kotlin', 'R', 'Swift', 'Rust', 'Ruby', 'Assembly', 'Git', 'Shell');
+                            foreach($langs as $key => $value) {
+                                $lower = strtolower($value);
+                                echo
+                                "<div class='option'>
+                                    <input type='checkbox' name='language' id='$lower' value='$lower' /> <label for='$lower'>$value</label>
+                                </div>";
+                            }
+                        ?>
                     </div>
                 </div>
             </div>
