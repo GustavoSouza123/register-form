@@ -14,6 +14,8 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+/* container */
+
 .container {
     width: 90%;
     max-width: 1200px;
@@ -42,6 +44,8 @@ body {
     font-weight: 600;
 }
 
+/* form */
+
 form {
     width: 100%;
     height: calc(100% - 70px);
@@ -55,18 +59,64 @@ form > div {
     flex-direction: column;
 }
 
+/* form title (dados gerais, endereço, linguagens de programação) */
 form .title {
     padding-bottom: 15px;
+    margin-bottom: 15px;
     border-bottom: 1px solid #ccc;
     font-size: 20px;
     color: #444;
 }
 
+/* form content below title (fields) */
+form .content {
+    height: 100%;
+    display: flex;
+}
+
+/* fields */
+form .content .field {
+    width: 47%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* inputs and textareas (individual styles_ */
+form .content input,
+form .content textarea {
+    margin: 5px 0 10px 0;
+    border: 1px solid #bbb;
+    outline: none;
+}
+
+form .content input {
+    height: 30px;
+    padding: 0 5px;
+}
+
+form .content textarea {
+    padding: 10px;
+    resize: none;
+}
+
+
+/* individual divs or forms */
 form .data {
     flex-basis: 50%;
     height: 60%;
     padding-bottom: 30px;
 }
+
+form .data .content {
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+/* textarea fields */
+.data .content .field:last-child {
+    width: 100%;
+}
+
 
 form .address {
     flex-basis: 50%;
@@ -75,7 +125,63 @@ form .address {
     padding-bottom: 30px;
 }
 
+form .address .content {
+    height: 70%;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+form .address .mg {
+    margin-left: 32px;
+}
+
+form .address .field {
+    margin-bottom: 4px;
+}
+
+form .address .small-fields {
+    width: 47%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+form .content .small-fields .field {
+    width: 47%;
+}
+
+
 form .languages {
     flex-basis: 100%;
     height: 40%;
+}
+
+form .languages .content {
+    height: 70%;
+}
+
+form .languages .content .developer,
+form .languages .content .programming-languages {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+form .languages .content .developer {
+    width: 30%;
+}
+
+form .languages .content .programming-languages {
+    width: 70%;
+}
+
+form .languages .content .option {
+    display: flex;
+    align-items: center;
+    height: 30px;
+}
+
+form .languages .content .option label {
+    margin: 0 0 5px 5px;
 }
