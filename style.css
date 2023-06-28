@@ -103,7 +103,7 @@ form .content textarea {
 /* individual divs or forms */
 form .data {
     flex-basis: 50%;
-    height: 60%;
+    height: 55%;
     padding-bottom: 30px;
 }
 
@@ -120,7 +120,7 @@ form .data .content {
 
 form .address {
     flex-basis: 50%;
-    height: 60%;
+    height: 55%;
     padding-left: 30px;
     padding-bottom: 30px;
 }
@@ -133,10 +133,6 @@ form .address .content {
 
 form .address .mg {
     margin-left: 32px;
-}
-
-form .address .field {
-    margin-bottom: 4px;
 }
 
 form .address .small-fields {
@@ -184,4 +180,20 @@ form .languages .content .option {
 
 form .languages .content .option label {
     margin: 0 0 5px 5px;
+}
+
+/* submit button */
+
+form .buttons {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+form .buttons input {
+    width: 80px;
+    height: 30px;
+    cursor: pointer;
 }
