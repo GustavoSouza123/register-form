@@ -16,7 +16,7 @@
     if($_SERVER["REQUEST_METHOD"] == "POST") {
         $empty_fields = 9;
 
-        /* required fields */
+        /* validation for required fields */
         if(empty($_POST["name"])) {
             $nameErr = "O nome é obrigatório";
         } else {
@@ -89,11 +89,11 @@
         }
 
         /* optional fields */
-        $phone = (empty($_POST["phone"])) ? "-" : test_input($_POST["phone"]);
-        $comment = (empty($_POST["comment"])) ? "-" : test_input($_POST["comment"]);
-        $neighborhood = (empty($_POST["neighborhood"])) ? "-" : test_input($_POST["neighborhood"]);
-        $comp = (empty($_POST["comp"])) ? "-" : test_input($_POST["comp"]);
-        $cep = (empty($_POST["cep"])) ? "-" : test_input($_POST["cep"]);
+        $phone = test_input($_POST["phone"]);
+        $comment = test_input($_POST["comment"]);
+        $neighborhood = test_input($_POST["neighborhood"]);
+        $comp = test_input($_POST["comp"]);
+        $cep = test_input($_POST["cep"]);
     }
 
     function test_input($data) {
@@ -211,9 +211,15 @@
         <div class="content">
             <?php
             if($_SERVER["REQUEST_METHOD"] == "POST" && $empty_fields == 0) {
+                if(empty($phone)) $phone = "-";
+                if(empty($comment)) $comment = "-";
+                if(empty($neighborhood)) $neighborhood = "-";
+                if(empty($comp)) $comp = "-";
+                if(empty($cep)) $cep = "-";
+                
                 echo "<b>Dados gerais</b><br>nome: $name<br>cpf: $cpf<br>email: $email<br>telefone: $phone<br>observação: $comment<br><br>";
                 echo "<b>Endereço</b><br>estado: $state<br>cidade: $city<br>bairro: $neighborhood<br>rua: $street<br>número: $number<br>complemento: $comp<br>cep: $cep<br><br>";
-                echo "<b>Conhecimento técnico</b><br>desenvolvedor: $developer<br>languages: ";
+                echo "<b>Conhecimento técnico</b><br>desenvolvedor: $developer<br>linguagens: ";
                 foreach($languages as $key => $value) {
                     echo $value;
                     if($key != count($languages)-1) echo ", ";

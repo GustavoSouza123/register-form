@@ -100,6 +100,10 @@ form .content input {
     padding: 0 5px;
 }
 
+form .content input::placeholder {
+    color: #ccc;
+}
+
 form .content textarea {
     padding: 10px;
     resize: none;
