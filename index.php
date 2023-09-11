@@ -9,13 +9,20 @@
 </head>
 <body>
     <?php
+    // function to process input
+    function test_input($data) {
+        $data = trim($data);
+        $data = stripslashes($data);
+        $data = htmlspecialchars($data);
+        return $data;
+    }
+
     /* define variables and set to empty values */
     $nameErr = $cpfErr = $emailErr = $stateErr = $cityErr = $streetErr = $numberErr = $developerErr = $languagesErr = "";
     $name = $cpf = $email = $phone = $comment = $state = $city = $neighborhood = $street = $number = $comp = $cep = $developer = $languages[] = "";
 
+    $empty_fields = 9;
     if($_SERVER["REQUEST_METHOD"] == "POST") {
-        $empty_fields = 9;
-
         /* validation for required fields */
         if(empty($_POST["name"])) {
             $nameErr = "O nome é obrigatório";
@@ -95,13 +102,33 @@
         $comp = test_input($_POST["comp"]);
         $cep = test_input($_POST["cep"]);
     }
-
-    function test_input($data) {
-        $data = trim($data);
-        $data = stripslashes($data);
-        $data = htmlspecialchars($data);
-        return $data;
-    }
+    
+    if($empty_fields == 0) {
+        echo '
+        <div class="container result">
+            <div class="container-title">
+                <h1>Resultado</h1>
+            </div>
+            <div class="content">';
+                if($_SERVER["REQUEST_METHOD"] == "POST" && $empty_fields == 0) {
+                    if(empty($phone)) $phone = "-";
+                    if(empty($comment)) $comment = "-";
+                    if(empty($neighborhood)) $neighborhood = "-";
+                    if(empty($comp)) $comp = "-";
+                    if(empty($cep)) $cep = "-";
+                    
+                    echo "<b>Dados gerais</b><br>nome: $name<br>cpf: $cpf<br>email: $email<br>telefone: $phone<br>observação: $comment<br><br>";
+                    echo "<b>Endereço</b><br>estado: $state<br>cidade: $city<br>bairro: $neighborhood<br>rua: $street<br>número: $number<br>complemento: $comp<br>cep: $cep<br><br>";
+                    echo "<b>Conhecimento técnico</b><br>desenvolvedor: $developer<br>linguagens: ";
+                    foreach($languages as $key => $value) {
+                        echo $value;
+                        if($key != count($languages)-1) echo ", ";
+                    }
+                    echo "<script>window.scrollTo(0, document.body.scrollHeight);</script>";
+                }
+            echo '</div>
+        </div>';
+    } else {
     ?>
 
     <div class="container">
@@ -204,30 +231,6 @@
         </form>
     </div>
 
-    <div class="container result">
-        <div class="container-title">
-            <h1>Resultado</h1>
-        </div>
-        <div class="content">
-            <?php
-            if($_SERVER["REQUEST_METHOD"] == "POST" && $empty_fields == 0) {
-                if(empty($phone)) $phone = "-";
-                if(empty($comment)) $comment = "-";
-                if(empty($neighborhood)) $neighborhood = "-";
-                if(empty($comp)) $comp = "-";
-                if(empty($cep)) $cep = "-";
-                
-                echo "<b>Dados gerais</b><br>nome: $name<br>cpf: $cpf<br>email: $email<br>telefone: $phone<br>observação: $comment<br><br>";
-                echo "<b>Endereço</b><br>estado: $state<br>cidade: $city<br>bairro: $neighborhood<br>rua: $street<br>número: $number<br>complemento: $comp<br>cep: $cep<br><br>";
-                echo "<b>Conhecimento técnico</b><br>desenvolvedor: $developer<br>linguagens: ";
-                foreach($languages as $key => $value) {
-                    echo $value;
-                    if($key != count($languages)-1) echo ", ";
-                }
-                echo "<script>window.scrollTo(0, document.body.scrollHeight);</script>";
-            }
-            ?>
-        </div>
-    </div>
+    <?php } ?>
 </body>
 </html>
